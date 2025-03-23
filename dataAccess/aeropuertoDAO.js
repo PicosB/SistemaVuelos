@@ -1,4 +1,4 @@
-const {Aeropuerto} = require('../models');
+const { Aeropuerto } = require ('../models/Aeropuerto');
 
 class AeropuertoDAO{
     constructor(){}
