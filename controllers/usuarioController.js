@@ -17,8 +17,8 @@ class UsuarioController {
         }
 
         const token = createToken(correo)
-        console.log(token)
-        res.status(200).json({
+        
+        res.status(201).json({
             status: 'success',
             message: 'Autenticación exitosa',
             data: usuario,
@@ -54,7 +54,7 @@ class UsuarioController {
       if (!usuarios.length) {
         return next(new AppError('No se encontraron usuarios', 404));
       }
-      res.status(200).json({
+      res.status(201).json({
         status: 'success',
         data: usuarios,
       });
@@ -71,7 +71,7 @@ class UsuarioController {
       if (!usuario) {
         return next(new AppError('Usuario no encontrado', 404));
       }
-      res.status(200).json({
+      res.status(201).json({
         status: 'success',
         data: usuario,
       });
@@ -89,7 +89,7 @@ class UsuarioController {
       if (!usuarioActualizado) {
         return next(new AppError('Usuario no encontrado', 404));
       }
-      res.status(200).json({
+      res.status(201).json({
         status: 'success',
         data: usuarioActualizado,
       });
@@ -103,7 +103,7 @@ class UsuarioController {
     try {
       const { id } = req.params;
       const mensaje = await UsuarioDAO.eliminarUsuario(id);
-      res.status(200).json({
+      res.status(201).json({
         status: 'success',
         message: mensaje,
       });

@@ -1,23 +1,21 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 const jwt = require('jsonwebtoken');
 
-export function createToken(correo) {
+function createToken(correo) {
     return jwt.sign(
-        { correo },
+        {correo},
         process.env.JWT_SECRET,
         { expiresIn: '24h' }
     );
 }
 
-export function ensureTokenIsValid(token) {
+function ensureTokenIsValid(token) {
     if (!token) {
         throw new Error('No se encuentra el token');
     }
-    jwt.verify(token, process.env.JWT_SECRET, { complete: true });
+    return jwt.verify(token, process.env.JWT_SECRET);
 }
 
 module.exports = {
-    createRequire,
+    createToken,
     ensureTokenIsValid
-}
+};

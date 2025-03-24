@@ -51,4 +51,3 @@ const AsientoDAO = require('../dataAccess/asientoDAO');
 const AeropuertoDAO = require('../dataAccess/aeropuertoDAO');
 const AerolineaDAO = require('../dataAccess/aerolineaDAO');
 const PagoDAO = require('../dataAccess/pagoDAO');
-

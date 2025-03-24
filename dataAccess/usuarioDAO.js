@@ -7,11 +7,20 @@ class UsuarioDAO{
     async autenticarUsuario(correo, contraseña) {
         try {
             const usuario = await Usuario.findOne({ where: { correo, contraseña } });
+
+            console.log('Usuario encontrado:', usuario);
+    
+            if (!usuario) {
+                throw new Error('Usuario o contraseña incorrectos');
+            }
+    
             return usuario;
         } catch (error) {
+            console.error('Error en autenticación:', error);
             throw error;
         }
     }
+    
 
     //Crear Usuarios
     async crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol) {
@@ -45,9 +54,9 @@ class UsuarioDAO{
     }
 
     //Actualizar Usuario
-    async actualizarUsuario(id, nombre, apellidoPaterno, apellidoMaterno, correo, contrasena, numTelefono, rol){
+    async actualizarUsuario(id, nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol){
         try {
-            await Usuario.update({nombre, apellidoPaterno, apellidoMaterno, correo, contrasena, numTelefono, rol}, {where: { id }});
+            await Usuario.update({nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol}, {where: { id }});
             const usuarioActualizado = await Usuario.findByPk(id);
             return usuarioActualizado;
         } catch (error) {
