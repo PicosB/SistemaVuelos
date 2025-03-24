@@ -42,7 +42,7 @@ class UsuarioController {
         data: nuevoUsuario,
       });
     } catch (error) {
-      console.error('Error al crear el usuario en el controlador:', error); // Añadir esta línea
+      console.error('Error al crear el usuario en el controlador:', error);
       next(new AppError('Error al crear el usuario', 500));
     }
   }  
