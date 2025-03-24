@@ -52,22 +52,3 @@ const AeropuertoDAO = require('../dataAccess/aeropuertoDAO');
 const AerolineaDAO = require('../dataAccess/aerolineaDAO');
 const PagoDAO = require('../dataAccess/pagoDAO');
 
-async function realizarTransacciones() {
-  try {
-    await sequelize.sync();
-    console.log('Modelos sincronizados correctamente.');
-    const nuevoUsuario = await UsuarioDAO.crearUsuario(
-      'Brayan', 'Garcia', 'Picos', 'brayangp@gmail.com', '123123', '6542321521', 'administrador'
-    );
-    console.log('Usuario creado:', nuevoUsuario.toJSON());
-    const usuarios = await UsuarioDAO.obtenerUsuarios();
-    console.log('Lista de usuarios:', usuarios);
-
-  } catch (error) {
-    console.error('Error en las transacciones:', error);
-  } finally {
-    await sequelize.close();
-    console.log('Conexión a la base de datos cerrada.');
-  }
-}
-realizarTransacciones();

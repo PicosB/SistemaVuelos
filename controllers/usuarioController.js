@@ -1,4 +1,4 @@
-const usuarioDAO = require('../dataAccess/usuarioDAO');
+const UsuarioDAO = require('../dataAccess/usuarioDAO');
 const { AppError } = require('../utils/appError');
 const { createToken, ensureTokenIsValid } = require('../utils/token-util')
 
@@ -11,13 +11,13 @@ class UsuarioController {
             return next(new AppError('Faltan datos requeridos: correo y contraseña', 400));
         }
 
-        const usuario = await loginDAO.autenticarUsuario(correo, contraseña);
+        const usuario = await UsuarioDAO.autenticarUsuario(correo, contraseña);
         if (!usuario) {
             return next(new AppError('Credenciales incorrectas', 401));
         }
 
         const token = createToken(correo)
-
+        console.log(token)
         res.status(200).json({
             status: 'success',
             message: 'Autenticación exitosa',
@@ -36,10 +36,10 @@ class UsuarioController {
       if (!nombre || !apellidoPaterno || !apellidoMaterno || !correo || !contraseña || !numTelefono || !rol) {
         return next(new AppError('Faltan datos requeridos: nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono o rol', 400));
       }
-      const nuevoUsuario = await usuarioDAO.crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol);
+      const nuevoUsuario = await UsuarioDAO.crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol);
       res.status(201).json({
         status: 'success',
-        data: nuevoUsuario,
+        data: nuevoUsuario
       });
     } catch (error) {
       console.error('Error al crear el usuario en el controlador:', error);
@@ -50,7 +50,7 @@ class UsuarioController {
   // Obtener todos los usuarios
   static async obtenerUsuarios(req, res, next) {
     try {
-      const usuarios = await usuarioDAO.obtenerUsuarios();
+      const usuarios = await UsuarioDAO.obtenerUsuarios();
       if (!usuarios.length) {
         return next(new AppError('No se encontraron usuarios', 404));
       }
@@ -67,7 +67,7 @@ class UsuarioController {
   static async obtenerUsuarioPorId(req, res, next) {
     try {
       const { id } = req.params;
-      const usuario = await usuarioDAO.obtenerUsuarioPorId(id);
+      const usuario = await UsuarioDAO.obtenerUsuarioPorId(id);
       if (!usuario) {
         return next(new AppError('Usuario no encontrado', 404));
       }
@@ -85,7 +85,7 @@ class UsuarioController {
     try {
       const { id } = req.params;
       const { nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol } = req.body;
-      const usuarioActualizado = await usuarioDAO.actualizarUsuario(id, nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol);
+      const usuarioActualizado = await UsuarioDAO.actualizarUsuario(id, nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol);
       if (!usuarioActualizado) {
         return next(new AppError('Usuario no encontrado', 404));
       }
@@ -102,7 +102,7 @@ class UsuarioController {
   static async eliminarUsuario(req, res, next) {
     try {
       const { id } = req.params;
-      const mensaje = await usuarioDAO.eliminarUsuario(id);
+      const mensaje = await UsuarioDAO.eliminarUsuario(id);
       res.status(200).json({
         status: 'success',
         message: mensaje,

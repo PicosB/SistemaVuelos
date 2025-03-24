@@ -6,7 +6,7 @@ export function createToken(correo) {
     return jwt.sign(
         { correo },
         process.env.JWT_SECRET,
-        { expiresIn: '1h' }
+        { expiresIn: '24h' }
     );
 }
 
@@ -17,7 +17,7 @@ export function ensureTokenIsValid(token) {
     jwt.verify(token, process.env.JWT_SECRET, { complete: true });
 }
 
-export default {
-    createToken,
+module.exports = {
+    createRequire,
     ensureTokenIsValid
-};
+}
