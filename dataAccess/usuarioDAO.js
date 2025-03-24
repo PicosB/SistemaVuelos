@@ -3,6 +3,16 @@ const { Usuario } = require('../models/Usuario');
 class UsuarioDAO{
     constructor() {}
 
+    //Autenticacion
+    async autenticarUsuario(correo, contraseña) {
+        try {
+            const usuario = await Usuario.findOne({ where: { correo, contraseña } });
+            return usuario;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     //Crear Usuarios
     async crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol){
         try {

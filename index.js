@@ -42,7 +42,7 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-const UsuarioDAO = require('./dataAccess/usuarioDAO')
+const UsuarioDAO = require('./dataAccess/usuarioDAO');
 const NotificacionDAO = require('./dataAccess/notificacionDAO');
 const ReservaDAO = require('./dataAccess/reservaDAO');
 const VueloDAO = require('./dataAccess/vueloDAO');
@@ -54,32 +54,20 @@ const PagoDAO = require('./dataAccess/pagoDAO');
 
 async function realizarTransacciones() {
   try {
-    //Sincronizar los modelos con la base de datos
     await sequelize.sync();
-
-    //Crear un Usuario
-    //const nuevoUsuario = await UsuarioDAO.crearUsuario('Raul', 'Luna', 'Bringas', 'raulBringas@gmail.com', 'contraseña123', '644213456', 'usuario');
-    const nuevoUsuario = await UsuarioDAO.crearUsuario('Brayan', 'Garcia', 'Picos', 'brayangp@gmail.com', '123123', '6542321521','administrador');
+    console.log('Modelos sincronizados correctamente.');
+    const nuevoUsuario = await UsuarioDAO.crearUsuario(
+      'Brayan', 'Garcia', 'Picos', 'brayangp@gmail.com', '123123', '6542321521', 'administrador'
+    );
     console.log('Usuario creado:', nuevoUsuario.toJSON());
-
-    //Obtener Usuarios
     const usuarios = await UsuarioDAO.obtenerUsuarios();
-    console.log('Usuarios:', usuarios);
-
-
+    console.log('Lista de usuarios:', usuarios);
 
   } catch (error) {
-    console.log('Error en las transacciones:',error);
+    console.error('Error en las transacciones:', error);
   } finally {
-    //Cierra la conexion a la base de datos cuando todas las transacciones han terminado
     await sequelize.close();
+    console.log('Conexión a la base de datos cerrada.');
   }
-  
-
-
-
-
 }
-
-//Ejecutar las transacciones
 realizarTransacciones();

@@ -1,7 +1,33 @@
 const usuarioDAO = require('../dataAccess/usuarioDAO');
 const { AppError } = require('../utils/appError');
+const { createToken, ensureTokenIsValid } = require('../utils/token-util')
 
 class UsuarioController {
+
+  static async login(req, res, next) {
+    try {
+        const { correo, contraseña } = req.body;
+        if (!correo || !contraseña) {
+            return next(new AppError('Faltan datos requeridos: correo y contraseña', 400));
+        }
+
+        const usuario = await loginDAO.autenticarUsuario(correo, contraseña);
+        if (!usuario) {
+            return next(new AppError('Credenciales incorrectas', 401));
+        }
+
+        const token = createToken(correo)
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Autenticación exitosa',
+            data: usuario,
+            token: token
+        });
+    } catch (error) {
+        next(new AppError('Error en el proceso de autenticación', 500));
+    }
+}
 
   // Crear un nuevo usuario
   static async crearUsuario(req, res, next) {
