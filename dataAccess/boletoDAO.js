@@ -1,4 +1,4 @@
-const { Boleto } = require('../models/Boleto');
+const { Boleto } = require('../models');
 
 class BoletoDAO {
     constructor() {}

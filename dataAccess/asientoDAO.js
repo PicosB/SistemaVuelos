@@ -1,4 +1,4 @@
-const { Asiento } = require('../models/Asiento');
+const { Asiento } = require('../models');
 
 class AsientoDAO {
     constructor() {}

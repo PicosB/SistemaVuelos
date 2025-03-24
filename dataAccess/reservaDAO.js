@@ -1,4 +1,4 @@
-const { Reserva } = require('../models/Reserva');
+const { Reserva } = require('../models');
 
 class ReservaDAO {
     constructor() {}

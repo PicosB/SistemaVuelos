@@ -1,4 +1,4 @@
-const { Notificacion } = require('../models/Notificacion');
+const { Notificacion } = require('../models');
 
 class NotificacionDAO {
     constructor() {}

@@ -42,9 +42,10 @@ class UsuarioController {
         data: nuevoUsuario,
       });
     } catch (error) {
+      console.error('Error al crear el usuario en el controlador:', error); // Añadir esta línea
       next(new AppError('Error al crear el usuario', 500));
     }
-  }
+  }  
 
   // Obtener todos los usuarios
   static async obtenerUsuarios(req, res, next) {

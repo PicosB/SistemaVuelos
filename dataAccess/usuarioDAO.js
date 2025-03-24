@@ -1,4 +1,4 @@
-const { Usuario } = require('../models/Usuario');
+const { Usuario } = require('../models');
 
 class UsuarioDAO{
     constructor() {}
@@ -14,11 +14,12 @@ class UsuarioDAO{
     }
 
     //Crear Usuarios
-    async crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol){
+    async crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol) {
         try {
-            const usuario = await Usuario.create({nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol});
+            const usuario = await Usuario.create({ nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol });
             return usuario;
         } catch (error) {
+            console.error('Error en crearUsuario:', error);
             throw error;
         }
     }

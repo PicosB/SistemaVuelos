@@ -42,15 +42,15 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-const UsuarioDAO = require('./dataAccess/usuarioDAO');
-const NotificacionDAO = require('./dataAccess/notificacionDAO');
-const ReservaDAO = require('./dataAccess/reservaDAO');
-const VueloDAO = require('./dataAccess/vueloDAO');
-const BoletoDAO = require('./dataAccess/boletoDAO');
-const AsientoDAO = require('./dataAccess/asientoDAO');
-const AeropuertoDAO = require('./dataAccess/aeropuertoDAO');
-const AerolineaDAO = require('./dataAccess/aerolineaDAO');
-const PagoDAO = require('./dataAccess/pagoDAO');
+const UsuarioDAO = require('../dataAccess/usuarioDAO');
+const NotificacionDAO = require('../dataAccess/notificacionDAO');
+const ReservaDAO = require('../dataAccess/reservaDAO');
+const VueloDAO = require('../dataAccess/vueloDAO');
+const BoletoDAO = require('../dataAccess/boletoDAO');
+const AsientoDAO = require('../dataAccess/asientoDAO');
+const AeropuertoDAO = require('../dataAccess/aeropuertoDAO');
+const AerolineaDAO = require('../dataAccess/aerolineaDAO');
+const PagoDAO = require('../dataAccess/pagoDAO');
 
 async function realizarTransacciones() {
   try {
