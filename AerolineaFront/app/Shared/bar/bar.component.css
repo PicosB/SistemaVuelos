@@ -1,0 +1,29 @@
+.bar {
+    width: 100%;
+    background-color: white;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: flex-start;
+    font-family: Arial, sans-serif;
+}
+
+.nav-tabs {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 10px 0;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.tab.active {
+    color: #0077b6;
+    border-color: #0077b6;
+}
