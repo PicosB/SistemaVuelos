@@ -1,0 +1,132 @@
+/* .container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    font-family: sans-serif;
+}
+*/
+h2{
+    text-align: left;
+    margin-top: 0;
+    margin-left: 2.5em;
+    font-family: sans-serif;
+  } 
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .main-content {
+    padding: 30px 20px;
+    background-color: #fff;
+    min-height: 100vh;
+  }
+  
+  .vuelo-seleccionado h2 {
+    margin-bottom: 15px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 10px;
+    font-family: sans-serif;
+  }
+  
+  thead {
+    background-color: #e0e0e0;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  .metodo-pago {
+    margin-top: 40px;
+  }
+  
+  .tarjeta {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    background-color: white;
+    justify-content: space-between;
+  }
+  
+  .icono-tarjeta {
+    font-size: 24px;
+  }
+  
+  #numero-tarjeta {
+    flex: 1;
+    margin-left: 20px;
+    font-size: 18px;
+    font-family: sans-serif;
+  }
+  
+  .cambiar {
+    background: none;
+    border: none;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+  
+  .opciones-pago {
+    margin-top: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: sans-serif;
+  }
+  
+  .opcion {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .opcion:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .oculto {
+    display: none;
+  }
+  
+  .reservar-vuelo {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  #btn-reservar {
+    background-color: #3a9ecb; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #btn-reservar:hover {
+    background-color: #0078c0;
+  }
+  
+  

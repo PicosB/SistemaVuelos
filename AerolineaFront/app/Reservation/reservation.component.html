@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Reservation/reservation.component.css">
+    <title>Document</title>
+</head>
+<body>    
+    <main class="main-content">
+        <section class="vuelo-seleccionado">
+          <h2>Vuelo Seleccionado</h2>
+          <table id="tabla-vuelos">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Salida</th>
+                <th>Llegada</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-body">
+              <!--Filas de vuelo-->
+            </tbody>
+          </table>
+        </section>
+      </main>
+
+      <section class="metodo-pago">
+        <h2>Método de Pago</h2>
+        
+        <div class="tarjeta" id="metodo-actual">
+          <span class="icono-tarjeta">💳</span>
+          <span id="numero-tarjeta">•••• •••• 4589</span>
+          <button class="cambiar" id="btn-cambiar">Cambiar</button>
+        </div>
+      
+        <div id="opciones-pago" class="opciones-pago oculto">
+          <div class="opcion" data-tarjeta="•••• •••• 1234">💳 •••• •••• 1234</div>
+          <div class="opcion" data-tarjeta="•••• •••• 5678">💳 •••• •••• 5678</div>
+          <div class="opcion" data-tarjeta="•••• •••• 9012">💳 •••• •••• 9012</div>
+        </div>
+      </section>
+      
+
+      <div class="reservar-vuelo">
+        <button id="btn-reservar">Reservar Vuelo</button>
+      </div>
+      
+</body>
+</html>
