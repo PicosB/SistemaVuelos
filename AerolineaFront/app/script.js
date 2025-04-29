@@ -9,4 +9,6 @@ window.customElements.define('bar-info', BarComponent);
 window.customElements.define('login-info', LoginComponent);
 window.customElements.define('register-info', RegisterComponent);
 window.customElements.define('mainpage-info', MainPageComponent);
-
+window.customElements.define('payment-method', PaymentMethodComponent);
+window.customElements.define('payment-history', PaymentHistoryComponent);
+  

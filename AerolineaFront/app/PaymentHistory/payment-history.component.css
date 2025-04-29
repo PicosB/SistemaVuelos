@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    padding: 32px;
+    font-family: sans-serif;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  .payment-history {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .payment-history thead {
+    background: #f0f0f0;
+  }
+  
+  .payment-history th, .payment-history td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
