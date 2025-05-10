@@ -1,6 +1,7 @@
 const UsuarioDAO = require('../dataAccess/usuarioDAO');
 const { AppError } = require('../utils/appError');
 const { createToken, ensureTokenIsValid } = require('../utils/token-util')
+const bcrypt = require('bcryptjs');
 
 class UsuarioController {
 
@@ -25,9 +26,10 @@ class UsuarioController {
             token: token
         });
     } catch (error) {
+        console.error('Error en el proceso de autenticación:', error.message);
         next(new AppError('Error en el proceso de autenticación', 500));
     }
-}
+  }
 
   // Crear un nuevo usuario
   static async crearUsuario(req, res, next) {
@@ -36,7 +38,11 @@ class UsuarioController {
       if (!nombre || !apellidoPaterno || !apellidoMaterno || !correo || !contraseña || !numTelefono || !rol) {
         return next(new AppError('Faltan datos requeridos: nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono o rol', 400));
       }
-      const nuevoUsuario = await UsuarioDAO.crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, numTelefono, rol);
+
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(contraseña, salt);
+
+      const nuevoUsuario = await UsuarioDAO.crearUsuario(nombre, apellidoPaterno, apellidoMaterno, correo, hashedPassword, numTelefono, rol);
       res.status(201).json({
         status: 'success',
         data: nuevoUsuario

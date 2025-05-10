@@ -1,4 +1,5 @@
 const { Usuario } = require('../models');
+const bcrypt = require('bcryptjs');
 
 class UsuarioDAO{
     constructor() {}
@@ -6,17 +7,22 @@ class UsuarioDAO{
     //Autenticacion
     async autenticarUsuario(correo, contraseña) {
         try {
-            const usuario = await Usuario.findOne({ where: { correo, contraseña } });
+            const usuario = await Usuario.findOne({ where: { correo } });
 
             console.log('Usuario encontrado:', usuario);
     
             if (!usuario) {
                 throw new Error('Usuario o contraseña incorrectos');
             }
+
+            const contraseñaValida = await bcrypt.compare(contraseña, usuario.dataValues['contraseña']);
+            if (!contraseñaValida) {
+                throw new Error('Usuario o contraseña incorrectos');
+            }
     
             return usuario;
         } catch (error) {
-            console.error('Error en autenticación:', error);
+            console.error('Error en autenticación:', error.message);
             throw error;
         }
     }
