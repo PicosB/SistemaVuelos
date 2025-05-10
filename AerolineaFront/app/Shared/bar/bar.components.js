@@ -29,7 +29,7 @@ export class BarComponent extends HTMLElement{
     }
 
     #agregarEventos(shadow) {
-        const tabs = shadow.querySelectorAll('.tab');  // Seleccionamos todas las pestañas
+        const tabs = shadow.querySelectorAll('.tab');  
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 this.#cambiarActivo(tab, tabs);
@@ -38,7 +38,7 @@ export class BarComponent extends HTMLElement{
     }
 
     #cambiarActivo(tab, tabs) {
-        tabs.forEach(t => t.classList.remove('active'));  // Removemos la clase 'active' de todas las pestañas
-        tab.classList.add('active');  // Añadimos la clase 'active' a la pestaña seleccionada
+        tabs.forEach(t => t.classList.remove('active'));  
+        tab.classList.add('active');  
     }
 }

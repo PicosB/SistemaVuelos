@@ -1,3 +1,5 @@
+import { navegarA } from "../../script.js";
+
 export class HeaderComponent extends HTMLElement{
     constructor(){
         super();
@@ -7,6 +9,7 @@ export class HeaderComponent extends HTMLElement{
         const shadow = this.attachShadow({mode : 'open'});
         this.#agregarEstilos(shadow);
         this.#render(shadow);
+        this.#agregarEventos(shadow);
     }
 
     #render(shadow){
@@ -30,5 +33,16 @@ export class HeaderComponent extends HTMLElement{
         link.setAttribute("href", "./Shared/header/header.component.css");
         shadow.appendChild(link);
     }
-    
+
+    #agregarEventos(shadow) {
+        const btnRegister = shadow.querySelector('.btn-Register');
+        btnRegister.addEventListener('click', () => {
+            navegarA('register-info');
+        });
+
+        const btnLogin = shadow.querySelector('.btn-Login');
+        btnLogin.addEventListener('click', () => {
+            navegarA('login-info');
+        });
+    }
 }

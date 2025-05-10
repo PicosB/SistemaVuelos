@@ -1,3 +1,5 @@
+import { navegarA } from "../script.js";
+
 export class RegisterComponent extends HTMLElement{
     constructor(){
         super();
@@ -7,6 +9,7 @@ export class RegisterComponent extends HTMLElement{
         const shadow = this.attachShadow({mode : 'open'});
         this.#agregarEstilos(shadow);
         this.#render(shadow);
+        this.#agregarEventos(shadow);
     }
 
     #render(shadow){
@@ -16,20 +19,20 @@ export class RegisterComponent extends HTMLElement{
                     <div class="left">
                         <h1>¡Regístrate!</h1>
                         <h3>Información General</h3>
-                        <form>
+                        <form id="formRegistro">
                             <div class="row">
-                                <input type="text" placeholder="Nombre(s)" class="input" />
-                                <input type="text" placeholder="Número Telefonico" class="input" />
+                                <input name="nombre" type="text" placeholder="Nombre(s)" class="input" required/>
+                                <input name="numTelefono" type="text" placeholder="Número Telefonico" class="input" required/>
                             </div>
                             <div class="row">
-                                <input type="text" placeholder="Apellido Materno" class="input" />
-                                <input type="text" placeholder="Apellido Paterno" class="input" />
+                                <input name="apellidoMaterno" type="text" placeholder="Apellido Materno" class="input" required/>
+                                <input name="apellidoPaterno" type="text" placeholder="Apellido Paterno" class="input" required/>
                             </div>
                             <div class="row">
-                                <input type="email" placeholder="Email" class="input" />
-                                <input type="password" placeholder="Contraseña" class="input" id="password" />
+                                <input name="correo" type="email" placeholder="Email" class="input" required/>
+                                <input name="contraseña" type="password" placeholder="Contraseña" class="input" id="password" required/>
                             </div>
-                            <button class="btn">Crear mi cuenta</button>
+                            <button type="submit" class="btn">Crear mi cuenta</button>
                         </form>
                     </div>
                     <div class="right">
@@ -48,5 +51,43 @@ export class RegisterComponent extends HTMLElement{
         link.setAttribute("rel", "stylesheet");
         link.setAttribute("href", "./Register/register.component.css")
         shadow.appendChild(link);
+    }
+
+    #agregarEventos(shadow) {
+        const form = shadow.querySelector('#formRegistro');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const datos = {
+                nombre: form.nombre.value,
+                apellidoPaterno: form.apellidoPaterno.value,
+                apellidoMaterno: form.apellidoMaterno.value,
+                correo: form.correo.value,
+                contraseña: form.contraseña.value,
+                numTelefono: form.numTelefono.value,
+                rol: 'usuario' 
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/api/usuarios', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Error al registrar');
+                }
+
+                alert('¡Registro exitoso!');
+                navegarA('mainpage-info');
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
     }
 }

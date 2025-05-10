@@ -1,3 +1,18 @@
+export function navegarA(nombreComponente) {
+  const app = document.getElementById('app');
+  app.innerHTML = ''; 
+
+  console.log(`Cargando el componente: ${nombreComponente}`);
+
+  const header = document.createElement('header-info');
+  const bar = document.createElement('bar-info');
+  app.appendChild(header);
+  app.appendChild(bar);
+
+  const componente = document.createElement(nombreComponente);
+  app.appendChild(componente);
+}
+
 import { HeaderComponent } from "./Shared/header/header.component.js";
 import { BarComponent } from "./Shared/bar/bar.components.js";
 import { LoginComponent } from "./Login/login.component.js";
@@ -16,3 +31,4 @@ window.customElements.define('reservation-info', ReservationComponent);
 window.customElements.define('payment-method', PaymentMethodComponent);
 window.customElements.define('payment-history', PaymentHistoryComponent);
 
+navegarA('mainpage-info');
