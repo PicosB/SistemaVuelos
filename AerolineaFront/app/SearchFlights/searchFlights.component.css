@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -50,39 +50,89 @@ body {
 }
 
 .vuelo {
-  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.vuelo .hora {
+.info-vuelo {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
+
 }
 
-.vuelo .hora-salida,
-.vuelo .hora-llegada {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.vuelo .duracion {
+.duracion {
   font-size: 14px;
-  color: #555;
+  color: #333;
+  margin-bottom: 8px;
 }
 
-.vuelo .precio {
+.linea-tiempo {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
 }
 
-.vuelo .precio p {
+.hora {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+.linea-con-puntos {
+  position: relative;
+  width: 280px;
+  height: 2px;
+  background-color: #999;
+}
+
+.linea-con-puntos::before,
+.linea-con-puntos::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.linea-con-puntos::before {
+  left: 0;
+}
+
+.linea-con-puntos::after {
+  right: 0;
+}
+
+.precio {
+  min-width: 120px;
+  text-align: right;
+}
+
+.precio p {
   font-size: 18px;
   color: #009CFF;
   font-weight: bold;
+}
+
+.precio .moneda {
+  font-size: 14px;
+  color: #aad4f5;
+}
+
+.icono-avion {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
 }

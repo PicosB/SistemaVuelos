@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buscar Vuelos</title>
   <link rel="stylesheet" href="./searchFlights.component.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
   <div class="container">
@@ -16,46 +17,53 @@
 
     <section class="vuelos">
       <div class="vuelo">
-        <div class="hora">
-          <p class="hora-salida">9:10 AM</p>
-          <span class="duracion">1h 25min</span>
-          <p class="hora-llegada">11:35 AM</p>
+        <div class="info-vuelo">
+          <p class="duracion">1h 25min</p>
+          <div class="icono-avion">
+            <img src="/AerolineaFront/assets/avionDespegando.svg" alt="Avión despegando" width="30" height="30" />
+          </div>
+          <div class="linea-tiempo">
+            <span class="hora hora-salida">9:10 AM</span>
+            <div class="linea-con-puntos"></div>
+            <span class="hora hora-llegada">11:35 AM</span>
+          </div>
         </div>
         <div class="precio">
-          <p>$2720 MXN</p>
+          <p>$2720 <span class="moneda">MXN</span></p>
         </div>
       </div>
 
       <div class="vuelo">
-        <div class="hora">
-          <p class="hora-salida">11:50 PM</p>
-          <span class="duracion">1h 25min</span>
-          <p class="hora-llegada">2:25 PM</p>
+        <div class="info-vuelo">
+          <p class="duracion">1h 25min</p>
+          <div class="icono-avion">
+            <img src="/AerolineaFront/assets/avionDespegando.svg" alt="Avión despegando" width="30" height="30" />
+          </div>
+          <div class="linea-tiempo">
+            <span class="hora hora-salida">9:10 AM</span>
+            <div class="linea-con-puntos"></div>
+            <span class="hora hora-llegada">11:35 AM</span>
+          </div>
         </div>
         <div class="precio">
-          <p>$2720 MXN</p>
+          <p>$2720 <span class="moneda">MXN</span></p>
         </div>
       </div>
 
       <div class="vuelo">
-        <div class="hora">
-          <p class="hora-salida">4:30 PM</p>
-          <span class="duracion">1h 25min</span>
-          <p class="hora-llegada">6:55 PM</p>
+        <div class="info-vuelo">
+          <p class="duracion">1h 25min</p>
+          <div class="icono-avion">
+            <img src="/AerolineaFront/assets/avionDespegando.svg" alt="Avión despegando" width="30" height="30" />
+          </div>
+          <div class="linea-tiempo">
+            <span class="hora hora-salida">9:10 AM</span>
+            <div class="linea-con-puntos"></div>
+            <span class="hora hora-llegada">11:35 AM</span>
+          </div>
         </div>
         <div class="precio">
-          <p>$2720 MXN</p>
-        </div>
-      </div>
-
-      <div class="vuelo">
-        <div class="hora">
-          <p class="hora-salida">9:10 PM</p>
-          <span class="duracion">1h 25min</span>
-          <p class="hora-llegada">11:35 PM</p>
-        </div>
-        <div class="precio">
-          <p>$2720 MXN</p>
+          <p>$2720 <span class="moneda">MXN</span></p>
         </div>
       </div>
     </section>

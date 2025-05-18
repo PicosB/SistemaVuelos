@@ -1,3 +1,5 @@
+import { navegarA } from "../script.js";
+
 export class MainPageComponent extends HTMLElement{
     constructor(){
         super();
@@ -7,6 +9,7 @@ export class MainPageComponent extends HTMLElement{
         const shadow = this.attachShadow({mode : 'open'});
         this.#agregarEstilos(shadow);
         this.#render(shadow);
+        this.#agregarEventos(shadow);
     }
 
     #render(shadow){
@@ -19,23 +22,23 @@ export class MainPageComponent extends HTMLElement{
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="origen">Lugar de Origen</label>
-                                        <select id="origen" name="origen">
+                                        <select id="origen" name="origen" required>
                                             <option value="">Seleccione un lugar de origen</option>
                                             <option value="Hermosillo">Hermosillo</option>
-                                            <option value="Cd. Obregón">Cd. Obregón</option>
-                                            <option value="Culiacán">Culiacán</option>
-                                            <option value="Mazatlán">Mazatlán</option>
+                                            <option value="Cd. Obregon">Cd. Obregon</option>
+                                            <option value="Culiacan">Culiacan</option>
+                                            <option value="Mazatlan">Mazatlan</option>
                                         </select>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="destino">Lugar de Destino</label>
-                                        <select id="destino" name="destino">
+                                        <select id="destino" name="destino" required>
                                             <option value="">Seleccione un lugar de destino</option>
                                             <option value="Hermosillo">Hermosillo</option>
-                                            <option value="Cd. Obregón">Cd. Obregón</option>
-                                            <option value="Culiacán">Culiacán</option>
-                                            <option value="Mazatlán">Mazatlán</option>
+                                            <option value="Cd. Obregon">Cd. Obregon</option>
+                                            <option value="Culiacan">Culiacan</option>
+                                            <option value="Mazatlan">Mazatlan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -43,19 +46,19 @@ export class MainPageComponent extends HTMLElement{
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="salida">Salida</label>
-                                        <input type="date" id="salida" name="salida">
+                                        <input type="date" id="salida" name="salida" required>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="regreso">Regreso</label>
-                                        <input type="date" id="regreso" name="regreso">
+                                        <input type="date" id="regreso" name="regreso" required>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group small">
                                         <label for="pasajeros">Pasajeros</label>
-                                        <input type="number" id="pasajeros" name="pasajeros" min="1" placeholder="Ej. 1">
+                                        <input type="number" id="pasajeros" name="pasajeros" min="1" placeholder="Ej. 1" required>
                                     </div>
 
                                     <button type="submit" class="btnBuscarVuelo">Buscar Vuelo</button>
@@ -68,6 +71,8 @@ export class MainPageComponent extends HTMLElement{
                         <img src="/AerolineaFront/assets/anuncioVuelo.PNG" alt="Imagen decorativa" class="imagen-vuelo" />
                     </div>
                 </div>
+
+                <br><br>
 
                 <h1>Mejores Vuelos con AirCloud</h1>
                 
@@ -133,5 +138,24 @@ export class MainPageComponent extends HTMLElement{
         link.setAttribute("rel", "stylesheet");
         link.setAttribute("href", "./MainPage/mainpage.component.css")
         shadow.appendChild(link);
+    }
+
+    #agregarEventos(shadow){
+        const btnBuscarVuelo = shadow.querySelector('.btnBuscarVuelo');
+        btnBuscarVuelo?.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const origen = shadow.querySelector('#origen').value;
+        const destino = shadow.querySelector('#destino').value;
+        const salida = shadow.querySelector('#salida').value;
+        const regreso = shadow.querySelector('#regreso').value;
+        const pasajeros = shadow.querySelector('#pasajeros').value;
+
+        const criterios = { origen, destino, salida, regreso, pasajeros };
+        
+        localStorage.setItem('criteriosBusqueda', JSON.stringify(criterios));
+
+        navegarA('search-flights');
+        });
     }
 }

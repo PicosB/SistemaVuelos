@@ -84,6 +84,30 @@ class VueloController {
       next(new AppError('Error al eliminar el vuelo', 500));
     }
   }
+
+  static async obtenerVuelosPorCriterios(req, res) {
+    try {
+      const { origen, destino, salida: fechaSalida } = req.query;
+
+      if (!origen || !destino || !fechaSalida) {
+        return next(new AppError('Debes proporcionar origen, destino y fecha de salida', 400));
+      }
+
+      const vuelos = await vueloDAO.obtenerVuelosPorCriterios(origen, destino, fechaSalida);
+
+      if (!vuelos.length) {
+        return next(new AppError('No se encontraron vuelos', 404));
+      }
+
+      res.status(200).json({
+        status: 'success',
+        data: vuelos,
+      });
+    } catch (error) {
+      next(new AppError('Error al obtener los vuelos', 500));
+    }
+  }
+
 }
 
 module.exports = VueloController;
