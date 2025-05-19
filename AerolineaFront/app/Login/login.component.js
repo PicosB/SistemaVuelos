@@ -1,4 +1,5 @@
 import { navegarA } from "../script.js";
+import { AuthService } from "./auth.service.js";
 
 export class LoginComponent extends HTMLElement{
     constructor(){
@@ -66,8 +67,8 @@ export class LoginComponent extends HTMLElement{
                     throw new Error(result.message || 'Credenciales incorrectas');
                 }
 
+                AuthService.guardarSesion(result);
                 alert('Inicio de sesión exitoso');
-                // Aquí podrías guardar el token o datos del usuario si tu backend lo devuelve
                 navegarA('mainpage-info');
             } catch (error) {
                 alert('Error al iniciar sesión: ' + error.message);

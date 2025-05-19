@@ -1,4 +1,5 @@
 import { navegarA } from "../../script.js";
+import { AuthService } from "../../Login/auth.service.js";
 
 export class HeaderComponent extends HTMLElement{
     constructor(){
@@ -13,6 +14,8 @@ export class HeaderComponent extends HTMLElement{
     }
 
     #render(shadow){
+        const usuario = AuthService.obtenerUsuario();
+
         shadow.innerHTML += `
             <header class="encabezado">
                 <div class="logo-nombre">
@@ -20,8 +23,13 @@ export class HeaderComponent extends HTMLElement{
                     <img src="/AerolineaFront/assets/logo-aircloud.png" alt="Logo AirCloud" class="logo">
                 </div>
                 <div class="buttons">
-                    <button class="btn btn-Register">Regístrate</button>
-                    <button class="btn btn-Login">Iniciar Sesión</button>
+                    ${usuario ? `
+                        <p>Bienvenido, ${usuario?.data?.nombre || 'usuario'}</p>
+                        <button class="btn btn-Logout">Cerrar sesión</button>
+                    ` : `
+                        <button class="btn btn-Register">Regístrate</button>
+                        <button class="btn btn-Login">Iniciar Sesión</button>
+                    `}
                 </div>
             </header>
         `
@@ -36,13 +44,27 @@ export class HeaderComponent extends HTMLElement{
 
     #agregarEventos(shadow) {
         const btnRegister = shadow.querySelector('.btn-Register');
-        btnRegister.addEventListener('click', () => {
-            navegarA('register-info');
-        });
-
         const btnLogin = shadow.querySelector('.btn-Login');
-        btnLogin.addEventListener('click', () => {
-            navegarA('login-info');
-        });
+        const btnLogout = shadow.querySelector('.btn-Logout');
+
+        if (btnRegister) {
+            btnRegister.addEventListener('click', () => {
+                navegarA('register-info');
+            });
+        }
+
+        if (btnLogin) {
+            btnLogin.addEventListener('click', () => {
+                navegarA('login-info');
+            });
+        }
+
+        if (btnLogout) {
+            btnLogout.addEventListener('click', () => {
+                AuthService.cerrarSesion();
+                alert('Sesión cerrada');
+                location.reload();
+            });
+        }
     }
 }

@@ -1,4 +1,5 @@
 import { navegarA } from "../script.js";
+import { AuthService } from "../Login/auth.service.js";
 
 export class RegisterComponent extends HTMLElement{
     constructor(){
@@ -83,6 +84,7 @@ export class RegisterComponent extends HTMLElement{
                     throw new Error(result.message || 'Error al registrar');
                 }
 
+                AuthService.guardarSesion(result);
                 alert('¡Registro exitoso!');
                 navegarA('mainpage-info');
             } catch (error) {
