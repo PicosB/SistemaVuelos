@@ -1,3 +1,5 @@
+import { navegarA } from "../script.js";
+
 export class SearchFlightsComponent extends HTMLElement {
     constructor() {
         super();
@@ -8,7 +10,7 @@ export class SearchFlightsComponent extends HTMLElement {
         this.shadow = shadow;
         this.#formatearHoraLocal();
         this.#render(shadow);
-        this.#agregarEstilos(shadow);
+        this.#agregarEstilos(shadow);        
     }
 
     #formatearHoraLocal(fechaUTC, offset = -6) {
@@ -102,17 +104,31 @@ export class SearchFlightsComponent extends HTMLElement {
                 </div>
                 <div class="precio">
                     <p>$${vuelo.precio} <span class="moneda">MXN</span></p>
+                    <button class="btn-modificar">Reservar</button>
                 </div>
                 </div>
             `;
             container.insertAdjacentHTML("beforeend", vueloHTML);
+
+            
+            const botones = container.querySelectorAll('.btn-modificar');
+            const botonActual = botones[botones.length - 1]; 
+            botonActual.addEventListener('click', () => {
+           
+            localStorage.setItem('vueloSeleccionado', JSON.stringify(vuelo));
+            
+            navegarA('reservation-info'); 
             });
+
+        });
 
         } catch (error) {
             container.innerHTML = "<p>Error al cargar los vuelos. Intente más tarde.</p>";
             console.error(error);
         }
     }
+
+    
 
 
     #agregarEstilos(shadow) {
