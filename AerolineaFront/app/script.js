@@ -22,6 +22,7 @@ import { ReservationComponent } from "./Reservation/reservation.component.js";
 import { PaymentMethodComponent } from "./PaymentMethods/payment.method.component.js";
 import { PaymentHistoryComponent } from "./PaymentHistory/payment-history.component.js";
 import { SearchFlightsComponent } from "./SearchFlights/searchFlights.component.js";
+import { SeatSelectionComponent } from "./Reservation/seatSelection.component.js";
 
 window.customElements.define('header-info', HeaderComponent);
 window.customElements.define('bar-info', BarComponent);
@@ -32,5 +33,6 @@ window.customElements.define('reservation-info', ReservationComponent);
 window.customElements.define('payment-method', PaymentMethodComponent);
 window.customElements.define('payment-history', PaymentHistoryComponent);
 window.customElements.define('search-flights', SearchFlightsComponent);
+window.customElements.define('seat-selection', SeatSelectionComponent);
 
 navegarA('mainpage-info');

@@ -117,7 +117,7 @@ export class SearchFlightsComponent extends HTMLElement {
            
             localStorage.setItem('vueloSeleccionado', JSON.stringify(vuelo));
             
-            navegarA('reservation-info'); 
+            navegarA('seat-selection'); 
             });
 
         });

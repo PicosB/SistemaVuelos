@@ -35,22 +35,6 @@ export class ReservationComponent extends HTMLElement {
             </table>
             </section>
 
-            <section class="metodo-pago2">
-                <h2>Método de Pago</h2>
-                
-                <div class="tarjeta" id="metodo-actual">
-                    <span class="icono-tarjeta">💳</span>
-                    <span id="numero-tarjeta">•••• •••• 4589</span>
-                    <button class="cambiar" id="btn-cambiar">Cambiar</button>
-                </div>
-
-                <div id="opciones-pago" class="opciones-pago oculto">
-                    <div class="opcion" data-tarjeta="•••• •••• 1234">💳 •••• •••• 1234</div>
-                    <div class="opcion" data-tarjeta="•••• •••• 5678">💳 •••• •••• 5678</div>
-                    <div class="opcion" data-tarjeta="•••• •••• 9012">💳 •••• •••• 9012</div>
-                </div>
-            </section>
-
             <section class="metodo-pago">
             <h2>Método de Pago</h2>
 
@@ -88,17 +72,14 @@ export class ReservationComponent extends HTMLElement {
   }
 
   #agregarEventos(shadow) {
-    // Recuperar vuelo desde localStorage
     const vuelo = JSON.parse(localStorage.getItem("vueloSeleccionado"));
 
     if (!vuelo) {
-      // Si no hay vuelo, mostrar mensaje o redirigir
       const tablaBody = shadow.getElementById("tabla-body");
       tablaBody.innerHTML = `<tr><td colspan="6">No hay vuelo seleccionado.</td></tr>`;
       return;
     }
 
-    // Formatear fechas y horas
     const fechaSalida = new Date(vuelo.fechaSalida);
     const fechaLlegada = new Date(vuelo.fechaLlegada);
     const fecha = fechaSalida.toLocaleDateString("es-MX");
@@ -111,7 +92,6 @@ export class ReservationComponent extends HTMLElement {
       minute: "2-digit",
     });
 
-    // Insertar fila en la tabla
     const tablaBody = shadow.getElementById("tabla-body");
     tablaBody.innerHTML = `
         <tr>
@@ -124,22 +104,7 @@ export class ReservationComponent extends HTMLElement {
         </tr>
     `;
 
-    // Manejar cambio de método de pago (opcional)
-    const btnCambiar = shadow.getElementById("btn-cambiar");
-    const opciones = shadow.getElementById("opciones-pago");
-    const numeroTarjeta = shadow.getElementById("numero-tarjeta");
-
-    btnCambiar.addEventListener("click", () => {
-      opciones.classList.toggle("oculto");
-    });
-
-    opciones.querySelectorAll(".opcion").forEach((opcion) => {
-      opcion.addEventListener("click", () => {
-        const nuevaTarjeta = opcion.dataset.tarjeta;
-        numeroTarjeta.textContent = nuevaTarjeta;
-        opciones.classList.add("oculto");
-      });
-    });
+   
     
     shadow
       .getElementById("btn-reservar")
