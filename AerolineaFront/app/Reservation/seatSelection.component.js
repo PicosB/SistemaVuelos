@@ -32,21 +32,32 @@ export class SeatSelectionComponent extends HTMLElement {
   }
 
   #generarFilasAsientos() {
-    const filas = 10;
-    const columnas = ["A", "B", "C", "D"];
+    const totalAsientos = 40;
     let html = "";
+    const asientosPorFila = 4;
 
-    for (let i = 1; i <= filas; i++) {
-      html += '<div class="fila-asiento">';
-      columnas.forEach((col, idx) => {
-        const asiento = `${i}${col}`;
-        html += `
-        <div class="asiento" data-asiento="${asiento}">
-          ${asiento}
-        </div>
-        ${idx === 1 ? '<div class="pasillo-central"></div>' : ""}
-      `;
-      });
+    for (let i = 1; i <= totalAsientos; i++) {
+      if ((i - 1) % asientosPorFila === 0) {
+        html += '<div class="fila-asiento">';
+      }
+
+      const indexInRow = (i - 1) % asientosPorFila;
+      if (indexInRow === 2) {
+        html += '<div class="pasillo-central"></div>';
+      }
+
+      html += `
+      <div class="asiento" data-asiento="${i}">
+        ${i}
+      </div>
+    `;
+
+      if (i % asientosPorFila === 0) {
+        html += "</div>";
+      }
+    }
+
+    if (totalAsientos % asientosPorFila !== 0) {
       html += "</div>";
     }
 
@@ -54,7 +65,6 @@ export class SeatSelectionComponent extends HTMLElement {
   }
 
   #agregarEstilos(shadow) {
-    
     const style = document.createElement("style");
     style.textContent = `
           :host {
@@ -149,35 +159,34 @@ export class SeatSelectionComponent extends HTMLElement {
   }
 
   #agregarEventos(shadow) {
-  const grid = shadow.getElementById("grid-asientos");
-  const textoSeleccion = shadow
-    .getElementById("seleccion")
-    .querySelector("strong");
-  const botonConfirmar = shadow.getElementById("confirmar");
+    const grid = shadow.getElementById("grid-asientos");
+    const textoSeleccion = shadow
+      .getElementById("seleccion")
+      .querySelector("strong");
+    const botonConfirmar = shadow.getElementById("confirmar");
 
-  this.seatSeleccionado = null;
+    this.seatSeleccionado = null;
 
-  grid.addEventListener("click", (e) => {
-    if (e.target.classList.contains("asiento")) {
-      const anterior = grid.querySelector(".asiento.seleccionado");
-      if (anterior) anterior.classList.remove("seleccionado");
+    grid.addEventListener("click", (e) => {
+      if (e.target.classList.contains("asiento")) {
+        const anterior = grid.querySelector(".asiento.seleccionado");
+        if (anterior) anterior.classList.remove("seleccionado");
 
-      e.target.classList.add("seleccionado");
-      this.seatSeleccionado = e.target.dataset.asiento;  // CORREGIDO AQUÍ
-      textoSeleccion.textContent = this.seatSeleccionado;
-    }
-  });
+        e.target.classList.add("seleccionado");
+        this.seatSeleccionado = e.target.dataset.asiento; // CORREGIDO AQUÍ
+        textoSeleccion.textContent = this.seatSeleccionado;
+      }
+    });
 
-  botonConfirmar.addEventListener("click", () => {
-    if (!this.seatSeleccionado) {
-      alert("Selecciona un asiento antes de continuar.");
-      return;
-    }
+    botonConfirmar.addEventListener("click", () => {
+      if (!this.seatSeleccionado) {
+        alert("Selecciona un asiento antes de continuar.");
+        return;
+      }
 
-    localStorage.setItem("asientoSeleccionado", this.seatSeleccionado);
-    alert(`Asiento ${this.seatSeleccionado} reservado.`);
-    navegarA("reservation-info");
-  });
-}
-
+      localStorage.setItem("asientoSeleccionado", this.seatSeleccionado);
+      alert(`Asiento ${this.seatSeleccionado} reservado.`);
+      navegarA("reservation-info");
+    });
+  }
 }
