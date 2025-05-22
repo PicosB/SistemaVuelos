@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Aerolíneas</title>
+</head>
+<body>
+  <h1 style="text-align:center;">Panel de Aerolíneas</h1>
+  <aerolinea-create></aerolinea-create>
+  <aerolinea-edit style="display:none;"></aerolinea-edit>
+  <aerolinea-list></aerolinea-list>
+  <script type="module" src="Aerolineas/create/aerolinea-create.component.js"></script>
+  <script type="module" src="Aerolinea/list/aerolinea-list.component.js"></script>
+  <script type="module" src="Aerolinea/edit/aerolinea-edit.component.js"></script>
+  <script>
+    window.addEventListener('editar-aerolinea', () => {
+      const modal = document.createElement('aerolinea-edit');
+      document.getElementById('modal-container').appendChild(modal);
+    });
+  </script>
+</body>
+</html>
