@@ -93,7 +93,7 @@ export class HeaderComponent extends HTMLElement{
                     alert('Sesión cerrada');
                     location.reload();
                 } else if (value === 'config') {
-                    navegarA('admin-configuracion');
+                    navegarA('adminpage-info');
                 }
             });
         }
