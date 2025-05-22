@@ -27,6 +27,7 @@ import { AeropuertoComponent } from "./Aeropuerto/aeropuerto.component.js";
 import { AerolineaComponent } from "./Aerolineas/aerolinea.component.js";
 import { AdministradoresComponent } from "./Administradores/administradores.component.js";
 import { VuelosComponent } from "./Vuelos/vuelo.component.js";
+import { SeatSelectionComponent } from "./Reservation/seatSelection.component.js";
 
 window.customElements.define('header-info', HeaderComponent);
 window.customElements.define('bar-info', BarComponent);
@@ -42,5 +43,6 @@ window.customElements.define('aeropuerto-info', AeropuertoComponent);
 window.customElements.define('aerolinea-info', AerolineaComponent);
 window.customElements.define('administradores-info', AdministradoresComponent);
 window.customElements.define('vuelo-info', VuelosComponent);
+window.customElements.define('seat-selection', SeatSelectionComponent);
 
 navegarA('mainpage-info');

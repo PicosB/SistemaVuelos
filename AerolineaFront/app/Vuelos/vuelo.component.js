@@ -120,6 +120,8 @@ export class VuelosComponent extends HTMLElement {
           throw new Error(result.message || "Error al guardar el vuelo");
         }
 
+        const vueloGuardado = await response.json();
+
         alert(
           editandoId
             ? "Vuelo actualizado exitosamente"
@@ -129,6 +131,33 @@ export class VuelosComponent extends HTMLElement {
         delete form.dataset.editando;
         shadow.querySelector(".btnGuardar").textContent = "Guardar";
         window.dispatchEvent(new CustomEvent("vuelo-create"));
+
+        if (!editandoId) {
+        const idVuelo = vueloGuardado.data.id;
+
+        const peticionesAsientos = [];
+        for (let i = 1; i <= 40; i++) {
+          const tipoAsiento = i <= 10 ? "VIP" : "Económico";
+          const asiento = {
+            idVuelo,
+            numAsiento: i,
+            disponibilidad: true,
+            tipoAsiento,
+          };
+
+          peticionesAsientos.push(
+            fetch("http://localhost:3000/api/asientos", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(asiento),
+            })
+          );
+        }
+
+        await Promise.all(peticionesAsientos);
+        console.log("Asientos creados exitosamente");
+      }
+
       } catch (error) {
         alert("Error: " + error.message);
       }
