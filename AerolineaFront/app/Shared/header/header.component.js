@@ -15,21 +15,36 @@ export class HeaderComponent extends HTMLElement{
 
     #render(shadow){
         const usuario = AuthService.obtenerUsuario();
+        const nombre = usuario?.data?.nombre || 'usuario';
+        const rol = usuario?.data?.rol;
 
         shadow.innerHTML += `
             <header class="encabezado">
                 <div class="logo-nombre">
-                    <h1>AirCloud</h1>
-                    <img src="/AerolineaFront/assets/logo-aircloud.png" alt="Logo AirCloud" class="logo">
+                    <h1 class="titulo-aircloud">AirCloud</h1>
+                    <img src="/AerolineaFront/assets/logo-aircloud.png" alt="Logo AirCloud" class="logo" id="logo-aircloud">
                 </div>
                 <div class="buttons">
-                    ${usuario ? `
-                        <p>Bienvenido, ${usuario?.data?.nombre || 'usuario'}</p>
-                        <button class="btn btn-Logout">Cerrar sesión</button>
-                    ` : `
-                        <button class="btn btn-Register">Regístrate</button>
-                        <button class="btn btn-Login">Iniciar Sesión</button>
-                    `}
+                    ${
+                        usuario ? (
+                            rol === 'administrador' ? `
+                                <div class="usuario-menu">
+                                    <p>Bienvenido, ${nombre}</p>
+                                    <select class="admin-select">
+                                        <option value="" disabled selected hidden>Opciones</option>
+                                        <option value="config">Configuración</option>
+                                        <option value="logout">Cerrar sesión</option>
+                                    </select>
+                                </div>
+                            ` : `
+                                <p>Bienvenido, ${nombre}</p>
+                                <button class="btn btn-Logout">Cerrar sesión</button>
+                            `
+                        ) : `
+                            <button class="btn btn-Register">Regístrate</button>
+                            <button class="btn btn-Login">Iniciar Sesión</button>
+                        `
+                    }
                 </div>
             </header>
         `
@@ -46,6 +61,9 @@ export class HeaderComponent extends HTMLElement{
         const btnRegister = shadow.querySelector('.btn-Register');
         const btnLogin = shadow.querySelector('.btn-Login');
         const btnLogout = shadow.querySelector('.btn-Logout');
+        const adminSelect = shadow.querySelector('.admin-select');
+        const titulo = shadow.querySelector('.titulo-aircloud');
+        const logo = shadow.querySelector('#logo-aircloud');
 
         if (btnRegister) {
             btnRegister.addEventListener('click', () => {
@@ -64,6 +82,31 @@ export class HeaderComponent extends HTMLElement{
                 AuthService.cerrarSesion();
                 alert('Sesión cerrada');
                 location.reload();
+            });
+        }
+
+        if (adminSelect) {
+            adminSelect.addEventListener('change', (e) => {
+                const value = e.target.value;
+                if (value === 'logout') {
+                    AuthService.cerrarSesion();
+                    alert('Sesión cerrada');
+                    location.reload();
+                } else if (value === 'config') {
+                    navegarA('admin-configuracion');
+                }
+            });
+        }
+
+        if (titulo) {
+            titulo.addEventListener('click', () => {
+                navegarA('mainpage-info');
+            });
+        }
+
+        if (logo) {
+            logo.addEventListener('click', () => {
+                navegarA('mainpage-info');
             });
         }
     }
