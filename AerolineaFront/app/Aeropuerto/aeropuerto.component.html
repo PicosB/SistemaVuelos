@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./aeropuerto.component.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>Registrar Aeropuerto</h2>
+        <form id="formCrearAeropuerto">
+            <input class="input" type="text" name="nombre" placeholder="Nombre del Aeropuerto" required>
+            <input class="input" type="text" name="codigo" placeholder="Código (ej. MEX)" required>
+            <input class="input" type="text" name="ciudad" placeholder="Ciudad" required>
+            <input class="input" type="text" name="pais" placeholder="País" required>
+            <button class="btnGuardar" type="submit">Guardar</button>
+        </form>
+
+        <div>
+            <h2>Lista de Aeropuertos</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Código</th>
+                        <th>Ciudad</th>
+                        <th>País</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaAeropuertos"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

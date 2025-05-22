@@ -23,6 +23,10 @@ import { PaymentMethodComponent } from "./PaymentMethods/payment.method.componen
 import { PaymentHistoryComponent } from "./PaymentHistory/payment-history.component.js";
 import { SearchFlightsComponent } from "./SearchFlights/searchFlights.component.js";
 import { AdminPageComponent } from "./AdminPage/adminpage.component.js";
+import { AeropuertoComponent } from "./Aeropuerto/aeropuerto.component.js";
+import { AerolineaComponent } from "./Aerolineas/aerolinea.component.js";
+import { AdministradoresComponent } from "./Administradores/administradores.component.js";
+import { VuelosComponent } from "./Vuelos/vuelo.component.js";
 
 window.customElements.define('header-info', HeaderComponent);
 window.customElements.define('bar-info', BarComponent);
@@ -34,5 +38,9 @@ window.customElements.define('payment-method', PaymentMethodComponent);
 window.customElements.define('payment-history', PaymentHistoryComponent);
 window.customElements.define('search-flights', SearchFlightsComponent);
 window.customElements.define('adminpage-info', AdminPageComponent);
+window.customElements.define('aeropuerto-info', AeropuertoComponent);
+window.customElements.define('aerolinea-info', AerolineaComponent);
+window.customElements.define('administradores-info', AdministradoresComponent);
+window.customElements.define('vuelo-info', VuelosComponent);
 
 navegarA('mainpage-info');

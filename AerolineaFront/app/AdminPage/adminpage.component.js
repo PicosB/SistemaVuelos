@@ -1,3 +1,5 @@
+import { navegarA } from "../script.js";
+
 export class AdminPageComponent extends HTMLElement {
     constructor() {
         super();
@@ -14,10 +16,10 @@ export class AdminPageComponent extends HTMLElement {
         shadow.innerHTML += `
             <div class="wrapper">
                 <div class="container">
-                    <div class="btn">Gestionar<br>Aeropuertos</div>
-                    <div class="btn">Gestionar<br>Aerolíneas</div>
-                    <div class="btn">Gestionar<br>Vuelos</div>
-                    <div class="btn">Gestionar<br>Usuarios</div>
+                    <div class="btn" id="gestionarAeropuerto">Gestionar<br>Aeropuertos</div>
+                    <div class="btn" id="gestionarAerolineas">Gestionar<br>Aerolíneas</div>
+                    <div class="btn" id="gestionarVuelo">Gestionar<br>Vuelos</div>
+                    <div class="btn" id="gestionarAdmin">Gestionar<br>Usuarios</div>
                 </div>
             </div>
         `;
@@ -60,7 +62,33 @@ export class AdminPageComponent extends HTMLElement {
     }
 
     #agregarEventos(shadow){
+        const btnAeropuerto = shadow.querySelector('#gestionarAeropuerto');
+        const btnAerolineas = shadow.querySelector('#gestionarAerolineas');
+        const btnAdmin = shadow.querySelector('#gestionarAdmin');
+        const btnVuelo = shadow.querySelector('#gestionarVuelo');
 
+        if(btnAeropuerto){
+            btnAeropuerto.addEventListener('click', ()=>{
+                navegarA('aeropuerto-info');
+            });
+        }
+
+        if(btnAerolineas){
+            btnAerolineas.addEventListener('click', ()=>{
+                navegarA('aerolinea-info');
+            })
+        }
+
+        if(btnAdmin){
+            btnAdmin.addEventListener('click', ()=>{
+                navegarA('administradores-info');
+            })
+        }
+
+        if(btnVuelo){
+            btnVuelo.addEventListener('click', ()=>{
+                navegarA('vuelo-info');
+            })
+        }
     }
-
 }

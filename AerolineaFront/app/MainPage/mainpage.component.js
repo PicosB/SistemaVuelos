@@ -25,7 +25,7 @@ export class MainPageComponent extends HTMLElement{
                                         <select id="origen" name="origen" required>
                                             <option value="">Seleccione un lugar de origen</option>
                                             <option value="Hermosillo">Hermosillo</option>
-                                            <option value="Cd. Obregon">Cd. Obregon</option>
+                                            <option value="Ciudad Obregon">Cd. Obregon</option>
                                             <option value="Culiacan">Culiacan</option>
                                             <option value="Mazatlan">Mazatlan</option>
                                         </select>
@@ -36,7 +36,7 @@ export class MainPageComponent extends HTMLElement{
                                         <select id="destino" name="destino" required>
                                             <option value="">Seleccione un lugar de destino</option>
                                             <option value="Hermosillo">Hermosillo</option>
-                                            <option value="Cd. Obregon">Cd. Obregon</option>
+                                            <option value="Ciudad Obregon">Cd. Obregon</option>
                                             <option value="Culiacan">Culiacan</option>
                                             <option value="Mazatlan">Mazatlan</option>
                                         </select>
