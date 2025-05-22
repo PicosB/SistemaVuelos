@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Aeropuertos</title>
+</head>
+<body>
+    <h1 style="text-align:center;">Gestión de Aeropuertos</h1>
+    <aeropuerto-create></aeropuerto-create>
+    <aeropuerto-edit style="display:none;"></aeropuerto-edit>
+    <aeropuerto-list></aeropuerto-list>
+
+    <script type="module" src="./Aeropuerto/create/aeropuerto-create.component.js"></script>
+    <script type="module" src="./Aeropuerto/list/aeropuerto-list.component.js"></script>
+    <script type="module" src="./Aeropuerto/edit/aeropuerto-edit.component.js"></script>
+
+    <script>
+        window.addEventListener('editar-aeropuerto', (event) => {
+            const editComponent = document.querySelector('aeropuerto-edit');
+            editComponent.setAttribute('data-id', event.detail.id);
+            editComponent.style.display = 'block';
+        });
+        window.addEventListener('aeropuerto-editado', () => {
+            const editComponent = document.querySelector('aeropuerto-edit');
+            editComponent.style.display = 'none';
+            const listComponent = document.querySelector('aeropuerto-list');
+            listComponent.connectedCallback();
+        });
+    </script>
+</body>
+</html>
